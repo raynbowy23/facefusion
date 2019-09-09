@@ -2,8 +2,17 @@
 
 import cv2
 import numpy as np
+import os
+import sys
 
-img = cv2.imread('./img/yume.jpg', cv2.IMREAD_COLOR)
+# def resize_image(sys.argv):
+
+original_img = sys.argv[1]
+img_dir = './img'
+
+original_img = os.path.join(img_dir, original_img)
+print(original_img)
+img = cv2.imread(original_img, cv2.IMREAD_COLOR)
 
 orgHeight, orgWidth = img.shape[:2]
 size = (256,256)
