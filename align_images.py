@@ -5,6 +5,8 @@ from keras.utils import get_file
 from ffhq_dataset.face_alignment import image_align
 from ffhq_dataset.landmarks_detector import LandmarksDetector
 
+#python align_images.py "number".jpg aligned_images/
+
 LANDMARKS_MODEL_URL = 'http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2'
 
 
@@ -24,14 +26,18 @@ if __name__ == "__main__":
 
     landmarks_model_path = unpack_bz2(get_file('shape_predictor_68_face_landmarks.dat.bz2',
                                                LANDMARKS_MODEL_URL, cache_subdir='temp'))
-    RAW_IMAGES_DIR = sys.argv[1]
+    # RAW_IMAGES_DIR = sys.argv[1]
+    RAW_IMAGES_DIR = 'img/'
+    RAW_IMAGES_NAME = sys.argv[1] # it might be "number".jpg
     ALIGNED_IMAGES_DIR = sys.argv[2]
 
     landmarks_detector = LandmarksDetector(landmarks_model_path)
-    for img_name in os.listdir(RAW_IMAGES_DIR):
-        raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
-        for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
-            face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], i)
-            aligned_face_path = os.path.join(ALIGNED_IMAGES_DIR, face_img_name)
+    # for img_name in os.listdir(RAW_IMAGES_DIR):
+    # raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
+    raw_img_path = os.path.join(RAW_IMAGES_DIR, RAW_IMAGES_NAME)
+    for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
+        # face_img_name = '%s_%02d.png' % (os.path.splitext(RAW_IMAGES_NAME)[0], i)
+        face_img_name = '%s.png' % (os.path.splitext(RAW_IMAGES_NAME)[0])
+        aligned_face_path = os.path.join(ALIGNED_IMAGES_DIR, face_img_name)
 
-            image_align(raw_img_path, aligned_face_path, face_landmarks)
+        image_align(raw_img_path, aligned_face_path, face_landmarks)
