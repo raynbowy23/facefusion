@@ -6,7 +6,7 @@ import dnnlib
 import dnnlib.tflib as tflib
 import config
 
-# python mix.py "number".jpg
+# python mix.py 001
 
 GENERATED_IMAGE_NUM = sys.argv[1]
 # url_ffhq = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'

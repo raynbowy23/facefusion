@@ -10,6 +10,8 @@ import config
 from encoder.generator_model import Generator
 from encoder.perceptual_model import PerceptualModel
 
+# python encode_images.py --src_img ./img/"number".jpg
+
 # URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 URL_FFHQ = 'karras2019stylegan-ffhq-1024x1024.pkl'
 
@@ -21,7 +23,8 @@ def split_to_batches(l, n):
 
 def main():
     parser = argparse.ArgumentParser(description='Find latent representation of reference images using perceptual loss')
-    parser.add_argument('--src_dir', default='./img1/', help='Directory with images for encoding')
+    # parser.add_argument('--src_dir', default='./img/', help='Directory with images for encoding')
+    parser.add_argument('--src_img', default='./img/001.jpg', help='Directory with images for encoding')
     parser.add_argument('--generated_images_dir', default='./generated_images/', help='Directory for storing generated images')
     parser.add_argument('--dlatent_dir', default='./latent/', help='Directory for storing dlatent representations')
 
@@ -31,17 +34,20 @@ def main():
     # Perceptual model params
     parser.add_argument('--image_size', default=256, help='Size of images for perceptual model', type=int)
     parser.add_argument('--lr', default=.7, help='Learning rate for perceptual model', type=float)
-    parser.add_argument('--iterations', default=3000, help='Number of optimization steps for each batch', type=int)
+    parser.add_argument('--iterations', default=300, help='Number of optimization steps for each batch', type=int)
 
     # Generator params
     parser.add_argument('--randomize_noise', default=False, help='Add noise to dlatents during optimization', type=bool)
     args, other_args = parser.parse_known_args()
 
-    ref_images = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
-    ref_images = list(filter(os.path.isfile, ref_images))
+    # ref_images = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
+    ref_image = args.src_img
+    ref_image = list(filter(os.path.isfile, ref_image))
 
-    if len(ref_images) == 0:
-        raise Exception('%s is empty' % args.src_dir)
+    # if len(ref_images) == 0:
+    #     raise Exception('%s is empty' % args.src_dir)
+    if len(ref_image) == 0:
+        raise Exception('%s is empty' % args.src_img)
 
     os.makedirs(args.generated_images_dir, exist_ok=True)
     os.makedirs(args.dlatent_dir, exist_ok=True)
