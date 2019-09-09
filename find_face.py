@@ -9,40 +9,45 @@ FLAGS = None
 # 学習済モデルの種類
 cascade = ["default","alt","alt2","tree","profile","nose"]
 
-# 直接実行されている場合に通る(importされて実行時は通らない)
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--cascade",
-        type=str,
-        default="default",
-        choices=cascade,
-        help="cascade file."
-  )
-    parser.add_argument(
-        "--image_file",
-        type=str,
-        default="cut_source0.jpg",
-        help="image file."
-  )
-    parser.add_argument(
-        "--scale",
-        type=float,
-        default=1.3,
-        help="scaleFactor value of detectMultiScale."
-  )
-    parser.add_argument(
-        "--neighbors",
-        type=int,
-        default=2,
-        help="minNeighbors value of detectMultiScale."
-  )
-    parser.add_argument(
-        "--min",
-        type=int,
-        default=30,
-        help="minSize value of detectMultiScale."
-  )
+parser = argparse.ArgumentParser()
+
+# def find_face():
+
+"""
+    画像内の顔を検出して、範囲を広げて顔周辺の正方形画像に整形する
+"""
+
+parser.add_argument(
+    "--cascade",
+    type=str,
+    default="default",
+    choices=cascade,
+    help="cascade file."
+)
+parser.add_argument(
+    "--image_file",
+    type=str,
+    default="cut_source0.jpg",
+    help="image file."
+)
+parser.add_argument(
+    "--scale",
+    type=float,
+    default=1.3,
+    help="scaleFactor value of detectMultiScale."
+)
+parser.add_argument(
+    "--neighbors",
+    type=int,
+    default=2,
+    help="minNeighbors value of detectMultiScale."
+)
+parser.add_argument(
+    "--min",
+    type=int,
+    default=30,
+    help="minSize value of detectMultiScale."
+)
 
 # パラメータ取得と実行
 FLAGS, unparsed = parser.parse_known_args()        
@@ -131,3 +136,7 @@ if len(facerect) > 0:
 
 else:
     print("Could not find any face")
+
+# 直接実行されている場合に通る(importされて実行時は通らない)
+# if __name__ == "__main__":
+#     find_face()
