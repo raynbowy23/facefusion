@@ -8,7 +8,7 @@ import sys
 # def resize_image(sys.argv):
 
 original_img = sys.argv[1]
-img_dir = './img'
+img_dir = './sized_img'
 
 original_img = os.path.join(img_dir, original_img)
 print(original_img)
