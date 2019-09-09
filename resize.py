@@ -4,11 +4,15 @@ import cv2
 import numpy as np
 import os
 import sys
+from PIL import Image
+
+# python resize.py "number".jpg
 
 # def resize_image(sys.argv):
 
 original_img = sys.argv[1]
-img_dir = './sized_img'
+img_dir = './face_img'
+save_dir = './sized_img'
 
 original_img = os.path.join(img_dir, original_img)
 print(original_img)
@@ -20,4 +24,5 @@ newImg = cv2.resize(img, size)
 
 print(newImg.shape[:2])
 
-cv2.imwrite('./img/1.jpg', newImg)
+cv2.imwrite(os.path.join(save_dir, original_img), original_img)
+# cv2.imwrite('./img/1.jpg', newImg)

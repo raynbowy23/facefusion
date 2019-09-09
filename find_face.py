@@ -1,6 +1,8 @@
 import cv2
 import argparse
 
+# python find_face.py --image_file "number".jpg
+
 # 基本的なモデルパラメータ
 FLAGS = None
 
@@ -66,7 +68,7 @@ cascade_path = "haarcascade_frontalface_default.xml"
 
 # 使用ファイルと入出力ディレクトリ
 image_path  = "./img/"  + FLAGS.image_file
-output_path = "./sized_img/"
+output_path = "./face_img/"
 
 # ディレクトリ確認用(うまく行かなかった時用)
 import os
@@ -75,6 +77,8 @@ import os
 
 #ファイル読み込み
 image = cv2.imread(image_path)
+
+width, height = image.shape[:2]
 
 #グレースケール変換
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -96,13 +100,23 @@ facerect = cascade.detectMultiScale(image_gray, scaleFactor=FLAGS.scale, minNeig
 
 color = (255, 255, 255) #白
 
+x1 = x2 = y1 = y2 = 0
+
 #顔部分を切り取る
 for x,y,w,h in facerect:
-    faced_image = image[0:y+h+(int)(y/2), x-(int)(x/2):x+w+(int)(x/2)]
+    # desire image size as square
+    extend = h
+    print(x,y,w,h)
+    x1 = x - x
+    x2 = x + w + x if x2 < width else x + w
+    # y1 = y - (int)(extend/6) if y1 > 0 else 0
+    # y2 = y + h + (int)(extend/4) if y2 < height else y + h
+    y1 = y - (int)(y*2/5)
+    y2 = y1 + x2 - x1
+    print(x1, x2, y1, y2)
+    # faced_image = image[y-(int)(extend/3):y+h+(int)(extend/3), x1:x+w+(int)(extend/3)]
+    faced_image = image[y1:y2, x1:x2]
     # faced_image = image[y:y+h, x:x+w]
-    print(y)
-    print(y-h-h)
-    print(y+h+h)
 
 # 検出した場合
 if len(facerect) > 0:
