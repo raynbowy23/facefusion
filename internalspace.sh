@@ -1,5 +1,9 @@
 #!/bin/sh
 
+SECONDS=0
+
+time=$SECONDS
+
 CMDNAME=`basename $0`
 
 if [ $# -ne 1 ]; then
@@ -15,3 +19,5 @@ python find_face.py --image_file ${IMAGE_NUMBER}.jpg
 python resize.py ${IMAGE_NUMBER}.jpg
 python encode_images.py --src_img ./sized_img/${IMAGE_NUMBER}.jpg
 python mix.py ${IMAGE_NUMBER}
+
+echo $time

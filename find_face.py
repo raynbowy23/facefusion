@@ -72,7 +72,7 @@ elif FLAGS.cascade == cascade[5]:#"nose":
 cascade_path = "haarcascade_frontalface_default.xml"
 
 # 使用ファイルと入出力ディレクトリ
-image_path  = "./img/"  + FLAGS.image_file
+image_path  = "./aligned_images/"  + FLAGS.image_file
 output_path = "./face_img/"
 
 # ディレクトリ確認用(うまく行かなかった時用)
@@ -136,6 +136,8 @@ if len(facerect) > 0:
 
 else:
     print("Could not find any face")
+
+print("Done face found")
 
 # 直接実行されている場合に通る(importされて実行時は通らない)
 # if __name__ == "__main__":

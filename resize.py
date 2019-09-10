@@ -29,3 +29,5 @@ def resize_image(original_img):
 
 if __name__ == '__main__':
     resize_image(sys.argv[1])
+
+    print("Done image resized")
