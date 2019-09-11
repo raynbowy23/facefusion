@@ -25,7 +25,7 @@ def main():
     parser = argparse.ArgumentParser(description='Find latent representation of reference images using perceptual loss')
     # parser.add_argument('--src_dir', default='./img/', help='Directory with images for encoding')
     parser.add_argument('--src_img', default='001.jpg', help='Directory with images for encoding')
-    parser.add_argument('--src_dir', default='./sized_img', help='Directory with images for encoding')
+    parser.add_argument('--src_dir', default='./aligned_images', help='Directory with images for encoding')
     parser.add_argument('--generated_images_dir', default='./generated_images/', help='Directory for storing generated images')
     parser.add_argument('--dlatent_dir', default='./latent/', help='Directory for storing dlatent representations')
 
@@ -34,8 +34,8 @@ def main():
 
     # Perceptual model params
     parser.add_argument('--image_size', default=256, help='Size of images for perceptual model', type=int)
-    parser.add_argument('--lr', default=.7, help='Learning rate for perceptual model', type=float)
-    parser.add_argument('--iterations', default=300, help='Number of optimization steps for each batch', type=int)
+    parser.add_argument('--lr', default=.65, help='Learning rate for perceptual model', type=float)
+    parser.add_argument('--iterations', default=400, help='Number of optimization steps for each batch', type=int)
 
     # Generator params
     parser.add_argument('--randomize_noise', default=False, help='Add noise to dlatents during optimization', type=bool)
