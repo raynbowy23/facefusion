@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # RAW_IMAGES_DIR = sys.argv[1]
     RAW_IMAGES_DIR = 'img/'
     RAW_IMAGES_NAME = sys.argv[1] # it might be "number".jpg
-    ALIGNED_IMAGES_DIR = sys.argv[2]
+    ALIGNED_IMAGES_DIR = 'aligned_images/'
 
     landmarks_detector = LandmarksDetector(landmarks_model_path)
     # landmarks_detector = LandmarksDetector(LANDMARKS_MODEL_URL)

@@ -19,5 +19,6 @@ python find_face.py --image_file ${IMAGE_NUMBER}.jpg
 python resize.py ${IMAGE_NUMBER}.jpg
 python encode_images.py --src_img ./sized_img/${IMAGE_NUMBER}.jpg
 python mix.py ${IMAGE_NUMBER}
+python combine.py ${IMAGE_NUMBER}.jpg
 
 echo $time
