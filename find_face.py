@@ -87,10 +87,10 @@ width, height = image.shape[:2]
 
 #グレースケール変換
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-print(image_gray)
+# print(image_gray)
 #カスケード分類器の特徴量を取得する
 cascade = cv2.CascadeClassifier(cv2.data.haarcascades + cascade_path)    
-print(cascade)
+# print(cascade)
 
 #物体認識（顔認識）の実行
 #image - CV_8U 型の行列．ここに格納されている画像中から物体が検出されます
@@ -111,14 +111,14 @@ x1 = x2 = y1 = y2 = 0
 for x,y,w,h in facerect:
     # desire image size as square
     extend = h
-    print(x,y,w,h)
+    # print(x,y,w,h)
     x1 = x - x
     x2 = x + w + x if x2 < width else x + w
     # y1 = y - (int)(extend/6) if y1 > 0 else 0
     # y2 = y + h + (int)(extend/4) if y2 < height else y + h
     y1 = y - (int)(y*2/5)
     y2 = y1 + x2 - x1
-    print(x1, x2, y1, y2)
+    # print(x1, x2, y1, y2)
     # faced_image = image[y-(int)(extend/3):y+h+(int)(extend/3), x1:x+w+(int)(extend/3)]
     faced_image = image[y1:y2, x1:x2]
     # faced_image = image[y:y+h, x:x+w]

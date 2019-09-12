@@ -15,14 +15,14 @@ def resize_image(original_img):
     save_dir = './sized_img'
 
     original_dir = os.path.join(img_dir, original_img)
-    print(original_dir)
+    # print(original_dir)
     img = cv2.imread(original_dir, cv2.IMREAD_COLOR)
 
     orgHeight, orgWidth = img.shape[:2]
     size = (256,256)
     newImg = cv2.resize(img, size)
 
-    print(newImg.shape[:2])
+    # print(newImg.shape[:2])
     
     cv2.imwrite(os.path.join(save_dir, original_img), newImg)
     # cv2.imwrite('./img/1.jpg', newImg)

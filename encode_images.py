@@ -44,7 +44,7 @@ def main():
     ref_images = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
     # ref_image = args.src_dir
     # ref_image = list(filter(os.path.isfile, ref_image))
-    print(ref_images)
+    # print(ref_images)
 
     if len(ref_images) == 0:
         raise Exception('%s is empty' % args.src_dir)
@@ -71,7 +71,7 @@ def main():
     images_batch = []
 
     images_batch.append(args.src_img)
-    print(images_batch)
+    # print(images_batch)
     names = [os.path.splitext(os.path.basename(x))[0] for x in images_batch]
 
     perceptual_model.set_reference_images(images_batch)
@@ -79,7 +79,7 @@ def main():
     pbar = tqdm(op, leave=False, total=args.iterations)
     for loss in pbar:
         pbar.set_description(' '.join(names)+' Loss: %.2f' % loss)
-    print(' '.join(names), ' loss:', loss)
+    # print(' '.join(names), ' loss:', loss)
 
     # Generate images from found dlatents and save them
     generated_images = generator.generate_images()

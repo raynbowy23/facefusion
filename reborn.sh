@@ -27,9 +27,9 @@ python find_face.py --image_file "${IMAGE_JPEG}"
 python resize.py "${IMAGE_JPEG}"
 python align_images.py "${IMAGE_JPEG}"
 python encode_images.py --src_img ./sized_img/"${IMAGE_JPEG}"
-# python mix.py ${IMAGE_NUMBER}
-# python combine.py "${IMAGE_JPEG}"
+python mix.py "${IMAGE_JPEG}"
+python combine.py "${IMAGE_JPEG}"
 
-# python image_uploader.py "${IMAGE_JPEG}"
+python image_uploader.py "${IMAGE_JPEG}"
 
 echo $time

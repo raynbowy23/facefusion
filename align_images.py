@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # for img_name in os.listdir(RAW_IMAGES_DIR):
     # raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
     raw_img_path = os.path.join(RAW_IMAGES_DIR, RAW_IMAGES_NAME)
-    print(raw_img_path)
+    # print(raw_img_path)
     for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
         # face_img_name = '%s_%02d.png' % (os.path.splitext(RAW_IMAGES_NAME)[0], i)
         face_img_name = '%s.jpg' % (os.path.splitext(RAW_IMAGES_NAME)[0])

@@ -7,9 +7,12 @@ import dnnlib
 import dnnlib.tflib as tflib
 import config
 
-# python mix.py "number"
+# python mix.py "number".jpg
 
-GENERATED_IMAGE_NUM = sys.argv[1]
+
+GENERATED_IMAGE_JPEG = sys.argv[1]
+GENERATED_IMAGE_NUM = os.path.splitext(GENERATED_IMAGE_JPEG)[0]
+print(GENERATED_IMAGE_NUM)
 # url_ffhq = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'
 fpath = './karras2019stylegan-ffhq-1024x1024.pkl'
 synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True), minibatch_size=8)
@@ -26,7 +29,7 @@ def load_Gs(url):
     return Gs
 
 def draw_style_mixing_figure(png, Gs, w, h, src_seeds, dst_seeds, style_ranges):
-    print(png)
+    # print(png)
     src_latents = np.stack(np.random.RandomState(seed).randn(Gs.input_shape[1]) for seed in src_seeds)
 #    dst_latents = np.stack(np.random.RandomState(seed).randn(Gs.input_shape[1]) for seed in dst_seeds)
     src_dlatents = Gs.components.mapping.run(src_latents, None) # [seed, layer, component]
@@ -39,7 +42,7 @@ def draw_style_mixing_figure(png, Gs, w, h, src_seeds, dst_seeds, style_ranges):
     dst_dlatents[0] = dlatents
     # dst_dlatents[1] = dlatents
     # dst_dlatents[2] = dlatents
-    print(dst_dlatents.shape)
+    # print(dst_dlatents.shape)
 
     src_images = Gs.components.synthesis.run(src_dlatents, randomize_noise=False, **synthesis_kwargs)
     dst_images = Gs.components.synthesis.run(dst_dlatents, randomize_noise=False, **synthesis_kwargs)
