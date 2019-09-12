@@ -20,9 +20,9 @@ IMAGE_JPEG=`python latest_file.py`
 echo ${IMAGE_JPEG}
 # python image_downloader.py ${IMAGE_NUM}
 
-
 # python align_images.py ${IMAGE_PNG}
 
+python lighten_image.py "${IMAGE_JPEG}"
 python find_face.py --image_file "${IMAGE_JPEG}"
 python resize.py "${IMAGE_JPEG}"
 python align_images.py "${IMAGE_JPEG}"

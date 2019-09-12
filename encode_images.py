@@ -30,7 +30,7 @@ def main():
     parser.add_argument('--dlatent_dir', default='./latent/', help='Directory for storing dlatent representations')
 
     # for now it's unclear if larger batch leads to better performance/quality
-    parser.add_argument('--batch_size', default=1, help='Batch size for generator and perceptual model', type=int)
+    parser.add_argument('--batch_size', default=2, help='Batch size for generator and perceptual model', type=int)
 
     # Perceptual model params
     parser.add_argument('--image_size', default=256, help='Size of images for perceptual model', type=int)
@@ -38,7 +38,7 @@ def main():
     parser.add_argument('--iterations', default=400, help='Number of optimization steps for each batch', type=int)
 
     # Generator params
-    parser.add_argument('--randomize_noise', default=False, help='Add noise to dlatents during optimization', type=bool)
+    parser.add_argument('--randomize_noise', default=True, help='Add noise to dlatents during optimization', type=bool)
     args, other_args = parser.parse_known_args()
 
     ref_images = [os.path.join(args.src_dir, x) for x in os.listdir(args.src_dir)]
@@ -74,9 +74,12 @@ def main():
     # print(images_batch)
     names = [os.path.splitext(os.path.basename(x))[0] for x in images_batch]
 
+    # image_batch = args.src_img
+    # name = os.path.splittext(os.path.basename(image_batch)[0])
+
     perceptual_model.set_reference_images(images_batch)
     op = perceptual_model.optimize(generator.dlatent_variable, iterations=args.iterations, learning_rate=args.lr)
-    pbar = tqdm(op, leave=False, total=args.iterations)
+    pbar = tqdm(op, leave=True, total=args.iterations)
     for loss in pbar:
         pbar.set_description(' '.join(names)+' Loss: %.2f' % loss)
     # print(' '.join(names), ' loss:', loss)

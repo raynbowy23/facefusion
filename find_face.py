@@ -72,7 +72,7 @@ elif FLAGS.cascade == cascade[5]:#"nose":
 cascade_path = "haarcascade_frontalface_default.xml"
 
 # 使用ファイルと入出力ディレクトリ
-image_path  = "./img/"  + FLAGS.image_file
+image_path  = "./lighten_imgs/"  + FLAGS.image_file
 output_path = "./face_img/"
 
 # ディレクトリ確認用(うまく行かなかった時用)

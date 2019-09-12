@@ -6,6 +6,7 @@ import PIL.Image
 import dnnlib
 import dnnlib.tflib as tflib
 import config
+import random
 
 # python mix.py "number".jpg
 
@@ -77,11 +78,24 @@ def main():
     #                          load_Gs(fpath), w=1024, h=1024, src_seeds=[639,701,687,615,2268], dst_seeds=[0,0,0],
     #                         #  load_Gs(url_ffhq), w=1024, h=1024, src_seeds=[1000], dst_seeds=[0,0,0],
     #                          style_ranges=[range(0,4)]+[range(4,8)]+[range(8,18)])
+
+    # father father images
+    """
+    12, 103, 114, 145, 189, 196, 218, 221, 240, 247, 248, 265, 23992, 23962, 23937, 23923, 23918, 23880, 23770
+    """
+    fathers_list = [12, 23756, 23880, 23908, 23992, 265, 23770, 56, 189, 2760, 257, 23962]
+    father_src = random.choice(fathers_list)
     draw_style_mixing_figure(os.path.join('./father_imgs', GENERATED_IMAGE_NUM + '.jpg'), 
-                             load_Gs(fpath), w=1024, h=1024, src_seeds=[12], dst_seeds=[0,0,0],
+                             load_Gs(fpath), w=1024, h=1024, src_seeds=[father_src], dst_seeds=[0,0,0],
                              style_ranges=[range(0,4)]+[range(4,8)]+[range(8,18)])
+    # generate mother images
+    """
+    119, 122, 128, 129, 134, 200, 222, 236, 251, 257, 266, 23967, 23958, 23908, 23866, 23854, 23756, 23741, 23740
+    """
+    mothers_list = [221, 134, 23740, 11111, 266, 5423, 23923, 23741, 1231, 342, 248, 3120]
+    mother_src = random.choice(mothers_list)
     draw_style_mixing_figure(os.path.join('./mother_imgs', GENERATED_IMAGE_NUM + '.jpg'), 
-                             load_Gs(fpath), w=1024, h=1024, src_seeds=[59], dst_seeds=[0,0,0],
+                             load_Gs(fpath), w=1024, h=1024, src_seeds=[mother_src], dst_seeds=[0,0,0],
                              style_ranges=[range(0,4)]+[range(4,8)]+[range(8,18)])
 
     print("Done image mixed")
