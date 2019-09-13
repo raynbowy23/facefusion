@@ -1,16 +1,5 @@
 #!/bin/sh
 
-SECONDS=0
-
-time=$SECONDS
-
-CMDNAME=`basename $0`
-
-# if [ $# -ne 1 ]; then
-#     echo "Usage: $CMDNAME image_file" 1>&2
-#     exit 1
-# fi
-
 # IMAGE_NUMBER=$1
 IMAGE_JPEG=`python latest_file.py`
 # IMAGE_JPEG=${IMAGE_NUMBER}.jpg
@@ -30,6 +19,4 @@ python encode_images.py --src_img ./sized_img/"${IMAGE_JPEG}"
 python mix.py "${IMAGE_JPEG}"
 python combine.py "${IMAGE_JPEG}"
 
-python image_uploader.py "${IMAGE_JPEG}"
-
-echo $time
+# python image_uploader.py "${IMAGE_JPEG}"

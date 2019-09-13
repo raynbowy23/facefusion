@@ -12,6 +12,7 @@ def resize_image(original_img):
 
     # original_img = sys.argv[1]
     img_dir = './face_img'
+    # img_dir = './lighten_imgs'
     save_dir = './sized_img'
 
     original_dir = os.path.join(img_dir, original_img)

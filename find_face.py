@@ -69,7 +69,7 @@ elif FLAGS.cascade == cascade[4]:#"profile":
 elif FLAGS.cascade == cascade[5]:#"nose":
     cascade_path = "./models/haarcascade_mcs_nose.xml"
 
-cascade_path = "haarcascade_frontalface_default.xml"
+cascade_path = "haarcascade_frontalface_alt2.xml"
 
 # 使用ファイルと入出力ディレクトリ
 image_path  = "./lighten_imgs/"  + FLAGS.image_file
@@ -116,7 +116,7 @@ for x,y,w,h in facerect:
     x2 = x + w + x if x2 < width else x + w
     # y1 = y - (int)(extend/6) if y1 > 0 else 0
     # y2 = y + h + (int)(extend/4) if y2 < height else y + h
-    y1 = y - (int)(y*2/5)
+    y1 = y - (int)(y/2)
     y2 = y1 + x2 - x1
     # print(x1, x2, y1, y2)
     # faced_image = image[y-(int)(extend/3):y+h+(int)(extend/3), x1:x+w+(int)(extend/3)]

@@ -1,2 +1,5 @@
 *.pkl
 *.bz2
+*.jpg
+*.npy
+*.png
